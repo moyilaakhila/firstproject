@@ -12,7 +12,12 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-20.04
     steps:
-      - name: Run docker compose
+      - name: Checkout Repository
+        uses: actions/checkout@v2  # Add this step to ensure the repository is checked out
+
+      - name: Run Docker Compose
         run: |
+          ls  # List contents of the current directory for debugging purposes
           cd sample
           docker build -t my_image .
+
