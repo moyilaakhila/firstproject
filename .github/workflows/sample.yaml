@@ -20,4 +20,8 @@ jobs:
           ls  # List contents of the current directory for debugging purposes
           cd sample
           docker build -t my_image .
-
+      - name: Export docker images to deploy them
+        run: |
+          mkdir images
+          cd images
+          docker save my_image:latest | gzip > my_image.tar.gz
